@@ -1,12 +1,21 @@
-import { observable, action } from 'mobx'
+import { observable, action, computed, autorun } from 'mobx'
 
 class GlobalStore {
-    @observable username = 'wing'
+    @observable amount = 0
+    @observable price = 5
 
     @action
-    changeUserName = (name: string) => {
-        this.username = name
+    updateAmount = (num: number) => {
+        this.amount = num
+    }
+
+    @computed get total() {
+        return this.price * this.amount
     }
 }
 
 export const globalStore = new GlobalStore()
+
+autorun(() => {
+    console.log('count value: ', globalStore.amount)
+})

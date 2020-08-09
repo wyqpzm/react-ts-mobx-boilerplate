@@ -8,18 +8,18 @@ const envPreset = [
         // 禁用模块化方案转换
         modules: false,
     },
-];
+]
 
 module.exports = function (api) {
-    api.cache(true);
+    api.cache(true)
     return {
         presets: ['@babel/preset-typescript', envPreset],
         plugins: [
             '@babel/plugin-transform-runtime',
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-proposal-optional-chaining',
+            ['@babel/plugin-proposal-decorators', { legacy: true }],
             ['@babel/plugin-proposal-class-properties', { loose: true }],
-            ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
         ],
         env: {
             development: {
@@ -34,5 +34,5 @@ module.exports = function (api) {
                 ],
             },
         },
-    };
-};
+    }
+}
